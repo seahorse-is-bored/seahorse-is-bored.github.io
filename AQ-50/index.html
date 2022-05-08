@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Autism Quotient 50 Test
     </title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script>
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
 <link href="https://fonts.googleapis.com/css2?family=Radio+Canada&display=swap" rel="stylesheet">
@@ -545,7 +545,16 @@ btn.addEventListener("click", () => {
 showanswers.addEventListener("click", () => {
     document.getElementById("qbody").style.display = "block";
 });
-
+layout = {
+  polar: {
+    radialaxis: {
+      visible: true,
+      range: [0, 40]
+    }
+  },
+  showlegend: false
+}
+	  
 function getans() {
     reset();
     var answer = 0;
@@ -563,6 +572,13 @@ function getans() {
     document.getElementById("qbar").style.display = "none";
     var total = parseInt(I_score) + parseInt(C_score) + parseInt(SS_score) + parseInt(AD_score) + parseInt(AS_score);
     document.getElementById("total").innerText = "Total score: " + total + "/200";
+data = [{
+  type: 'scatterpolar',
+  r: [parseInt(SS_score), parseInt(AD_score), parseInt(AS_score), parseInt(C_score), parseInt(I_score)],
+  theta: ['SS','AD','AS', 'C', 'I'],
+  fill: 'toself'
+}]
+    Plotly.newPlot("myDiv", data, layout);
 }
 function reset()
 {
@@ -647,6 +663,7 @@ function score2(a, score) {
         I_score = I_score + parseInt(score1(q, score));
     }
 }
+
   </script>
   </body>
 </html>
