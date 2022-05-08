@@ -570,6 +570,7 @@ showanswers.addEventListener("click", () => {
 });
 
 function getans() {
+    reset();
     var answer = 0;
     for (var i = 0; i < 50; i++) {
         answer = answer + parseInt(getoutput(i + 1));
@@ -586,6 +587,15 @@ function getans() {
     var total = parseInt(I_score) + parseInt(C_score) + parseInt(SS_score) + parseInt(AD_score) + parseInt(AS_score);
     document.getElementById("total").innerText = "Total score: " + total + "/200";
     drawchart(AS_score, AD_score, SS_score, C_score, I_score);
+}
+function reset()
+{
+    SS_score = 0;
+    AS_score = 0;
+    AD_score = 0;
+    C_score = 0;
+    I_score = 0;
+    AQ_score =0;
 }
 // Scoring global variables
 var SS = [1, 11, 13, 15, 22, 36, 44, 45, 47, 48];
