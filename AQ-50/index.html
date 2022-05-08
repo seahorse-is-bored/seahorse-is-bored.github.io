@@ -22,7 +22,6 @@
     }
     body {
             font-family: 'Lato', sans-serif;
-            background-color: var(--Black);
         }
         .question {
             font-size: 18px;
@@ -564,7 +563,6 @@ function getans() {
     document.getElementById("qbar").style.display = "none";
     var total = parseInt(I_score) + parseInt(C_score) + parseInt(SS_score) + parseInt(AD_score) + parseInt(AS_score);
     document.getElementById("total").innerText = "Total score: " + total + "/200";
-    drawchart(AS_score, AD_score, SS_score, C_score, I_score);
 }
 function reset()
 {
@@ -648,55 +646,6 @@ function score2(a, score) {
     if (checkIn(q + 1, I)) {
         I_score = I_score + parseInt(score1(q, score));
     }
-}
-
-function drawchart(a, b, c, d, e) {
-    let currentDate = new Date();
-    let cDay = currentDate.getDate()
-    let cMonth = currentDate.getMonth() + 1
-    let cYear = currentDate.getFullYear()
-    var complete = cDay + "/" + cMonth + "/" + cYear
-    const data = {
-        labels: [
-            'Attention Switching',
-            'Attention to Detail',
-            'Social Skills',
-            'Communication',
-            'Imagination'
-        ],
-        datasets: [{
-            label: complete,
-            data: [a, b, c, d, e],
-            fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgb(255, 99, 132)',
-            pointBackgroundColor: 'rgb(255, 99, 132)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 99, 132)'
-        }]
-    };
-    const config = {
-        type: 'radar',
-        data: data,
-        options: {
-            elements: {
-                line: {
-                    borderWidth: 3
-                }
-            },
-            scales: {
-                r: {
-                    beginAtZero: true,
-                    max: 40
-                }
-            }
-        },
-    };
-    const myChart = new Chart(
-        document.getElementById('chart'),
-        config
-    );
 }
   </script>
   </body>
